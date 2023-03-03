@@ -1,10 +1,14 @@
-import attachColorAnsi from "./colorful";
-import { BackgroundColors } from "./colorful/backgroundColors";
-import { ForegroundColors } from "./colorful/foregroundColors";
+import { BackgroundColors } from "./dyeBg/backgroundColors";
+import { ForegroundColors } from "./dye/foregroundColors";
+import attachForegroundAnsi from "./dye/dye";
+import attachBackgroundAnsi from "./dyeBg/dyeBg";
+import attachBoldAnsi from "./bold/bold";
+import attachFaintAnsi from "./faint/faint";
 
 class Stylish {
   static instance: Stylish | null = null;
   private text: string = "";
+  private styles: string = "";
   private constructor() {}
   static getInstance(text: string) {
     if (this.instance != null) {
@@ -15,12 +19,25 @@ class Stylish {
     this.instance.text = text;
     return this.instance;
   }
-  colorful(foreground: ForegroundColors, background: BackgroundColors) {
-    this.text = attachColorAnsi(this.text, foreground, background);
+  dye(foreground: ForegroundColors) {
+    this.styles += attachForegroundAnsi(foreground);
     return this;
   }
+  dyeBg(background: BackgroundColors) {
+    this.styles += attachBackgroundAnsi(background);
+    return this;
+  }
+  bold() {
+    this.styles += attachBoldAnsi();
+    return this;
+  }
+  faint() {
+    this.styles += attachFaintAnsi();
+    return this;
+  }
+
   print() {
-    return this.text;
+    return `${this.styles}${this.text}\x1b[0m`;
   }
 }
 
@@ -30,3 +47,5 @@ function stylish(text: string) {
 }
 
 export default stylish;
+
+// console.log(stylish("hello men").dye("green").bold().print());
