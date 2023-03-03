@@ -4,6 +4,10 @@ import attachForegroundAnsi from "./dye/dye";
 import attachBackgroundAnsi from "./dyeBg/dyeBg";
 import attachBoldAnsi from "./bold/bold";
 import attachFaintAnsi from "./faint/faint";
+import attachItalicAnsi from "./italic/italic";
+import attachUnderlineAnsi from "./underline/underline";
+import attachBlinkAnsi from "./blink/blink";
+import attachInvertAnsi from "./invert/invert";
 
 class Stylish {
   static instance: Stylish | null = null;
@@ -36,6 +40,26 @@ class Stylish {
     return this;
   }
 
+  italic() {
+    this.styles += attachItalicAnsi();
+    return this;
+  }
+
+  underline() {
+    this.styles += attachUnderlineAnsi();
+    return this;
+  }
+
+  blink() {
+    this.styles += attachBlinkAnsi();
+    return this;
+  }
+
+  invert() {
+    this.styles += attachInvertAnsi();
+    return this;
+  }
+
   print() {
     return `${this.styles}${this.text}\x1b[0m`;
   }
@@ -48,4 +72,12 @@ function stylish(text: string) {
 
 export default stylish;
 
-// console.log(stylish("hello men").dye("green").bold().print());
+console.log(
+  stylish("hello men")
+    .dye("green")
+    .italic()
+    .underline()
+    .blink()
+    .invert()
+    .print()
+);
