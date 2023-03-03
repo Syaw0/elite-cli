@@ -1,5 +1,3 @@
-import { BackgroundColors } from "./dyeBg/backgroundColors";
-import { ForegroundColors } from "./dye/foregroundColors";
 import attachForegroundAnsi from "./dye/dye";
 import attachBackgroundAnsi from "./dyeBg/dyeBg";
 import attachBoldAnsi from "./bold/bold";
@@ -82,8 +80,23 @@ class Stylish {
   }
 }
 
-function stylish(text: string) {
+function stylish(text: string): string | Stylish;
+function stylish(text: string, config: Config): string | Stylish;
+function stylish(text: string, config?: Config): string | Stylish {
   const instance = Stylish.getInstance(text);
+  if (config != null) {
+    Object.keys(config).forEach((key) => {
+      const k = key as keyof Config;
+      if (config[k] != null) {
+        if (k == "dye" || k == "dyeBg") {
+          instance[k](config[k] as ForegroundColors | BackgroundColors);
+        } else {
+          instance[k]();
+        }
+      }
+    });
+    return instance.print();
+  }
   return instance;
 }
 
