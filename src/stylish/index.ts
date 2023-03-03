@@ -8,6 +8,9 @@ import attachItalicAnsi from "./italic/italic";
 import attachUnderlineAnsi from "./underline/underline";
 import attachBlinkAnsi from "./blink/blink";
 import attachInvertAnsi from "./invert/invert";
+import attachStrikeAnsi from "./strike/strike";
+import attachDoubleUnderlineAnsi from "./doubleUnderline/doubleUnderline";
+import attachOverlineAnsi from "./overline/overline";
 
 class Stylish {
   static instance: Stylish | null = null;
@@ -60,6 +63,20 @@ class Stylish {
     return this;
   }
 
+  strike() {
+    this.styles += attachStrikeAnsi();
+    return this;
+  }
+  doubleUnderline() {
+    this.styles += attachDoubleUnderlineAnsi();
+    return this;
+  }
+
+  overline() {
+    this.styles += attachOverlineAnsi();
+    return this;
+  }
+
   print() {
     return `${this.styles}${this.text}\x1b[0m`;
   }
@@ -71,13 +88,3 @@ function stylish(text: string) {
 }
 
 export default stylish;
-
-console.log(
-  stylish("hello men")
-    .dye("green")
-    .italic()
-    .underline()
-    .blink()
-    .invert()
-    .print()
-);
