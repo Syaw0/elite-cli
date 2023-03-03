@@ -1,5 +1,5 @@
 const attachStrikeAnsi = () => {
-  return `\x1b[3m`;
+  return `\x1b[9m`;
 };
 
 export default attachStrikeAnsi;

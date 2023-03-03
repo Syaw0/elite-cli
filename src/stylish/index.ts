@@ -80,8 +80,8 @@ class Stylish {
   }
 }
 
-function stylish(text: string): string | Stylish;
-function stylish(text: string, config: Config): string | Stylish;
+function stylish(text: string): Stylish;
+function stylish(text: string, config: Config): string;
 function stylish(text: string, config?: Config): string | Stylish {
   const instance = Stylish.getInstance(text);
   if (config != null) {
@@ -101,3 +101,4 @@ function stylish(text: string, config?: Config): string | Stylish {
 }
 
 export default stylish;
+export { Stylish };
