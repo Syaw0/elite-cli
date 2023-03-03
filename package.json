@@ -1,18 +1,31 @@
 {
-  "name": "@elite-cli/elite-cli",
-  "version": "0.1.0",
-  "description": "simple interface to interact with node js cli ",
-  "main": "index.js",
+  "name": "elite-cli",
+  "version": "1.0.0",
+  "description": "Simple nodejs interface to interact with cli.",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ts-node ./scripts/build.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git@syaw0.github.com:Syaw0/helpful-nodejs-cli.git"
+    "url": "git@syaw0.github.com:Syaw0/cypher.git"
   },
+  "keywords": [],
   "author": {
-    "email": "siamhb7@protonmail.com",
-    "name": "syaw0"
+    "name": "syaw0",
+    "email": "siamhb7@protonmail.com"
   },
-  "license": "ISC"
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/node": "^18.14.3",
+    "rollup": "^3.18.0",
+    "rollup-plugin-dts": "^5.2.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.0"
+  }
 }
