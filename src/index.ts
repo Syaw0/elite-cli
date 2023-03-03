@@ -1,3 +1,5 @@
-export default () => {
-  console.log("hello world");
-};
+import stylish from "./stylish";
+
+export namespace eliteCli {
+  stylish;
+}
