@@ -9,7 +9,7 @@ class Ask {
       output: process.stdout,
     });
   }
-  static getInstance() {
+  static getInstance(): Ask {
     if (this.instance != null) {
       return this.instance;
     }
@@ -17,7 +17,7 @@ class Ask {
     return this.instance;
   }
 
-  async ask(text: string) {
+  async ask(text: string): Promise<string> {
     this.interface.resume();
     const answer = await this.interface.question(text);
     this.interface.pause();
@@ -25,11 +25,9 @@ class Ask {
   }
 }
 
-// const ask = Ask.getInstance();
-// const asking = async () => {
-//   const s = await ask.ask("your age? ");
-//   const s2 = await ask.ask("your name? ");
-//   console.log(s, s2);
-// };
+function ask(text: string): Promise<string> {
+  const instance = Ask.getInstance();
+  return instance.ask(text);
+}
 
-// asking();
+export default ask;
